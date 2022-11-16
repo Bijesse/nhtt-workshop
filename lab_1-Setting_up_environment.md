@@ -2,7 +2,7 @@
 
 Now that you have a local version of this repository saved on your device after completing the [Getting Started](https://github.com/Bijesse/otel-workshop) requirements, it is time to set up your environment to run the Hipster Shop application. This app consists of 9 microservices that have been instrumented with OpenTelemetry, and 1 microservice that has been instrumented with an APM agent.
 
-## Quick background information on the technologies used in this lab:
+## Terminology and technologies used in this lab:
 * **OpenTelemetry** is an open standard for generating and exporting telemetry from your services to help you analyze your software's performance and behavior. It is a vendor-agnostic observability framework. 
 * **Minikube** is a lightweight Kubernetes implementation that creates a virtual machine on your local machine. 
 * **Skaffold** is a command line tool that simplifies the development workflow for building, pushing, and deploying your application by organizing common development stages into one command, which we'll use later in this lab.
