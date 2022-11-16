@@ -5,7 +5,8 @@ Now that you have a local version of this repository saved on your device after 
 ## Quick background information on the technologies used in this lab:
 * **OpenTelemetry** is an open standard for generating and exporting telemetry from your services to help you analyze your software's performance and behavior. It is a vendor-agnostic observability framework. 
 * **Minikube** is a lightweight Kubernetes implementation that creates a virtual machine on your local machine. 
-* **Skaffold** is a command line tool that simplifies the development workflow for building, pushing, and deploying your application by organizing common development stages into one command, which we'll use later in this lab. 
+* **Skaffold** is a command line tool that simplifies the development workflow for building, pushing, and deploying your application by organizing common development stages into one command, which we'll use later in this lab.
+* **Environment Variables** are variables whose values are set outside the program.
 
 ## Start Minikube
 Run the following terminal command to spin up your local Kubernetes cluster:
