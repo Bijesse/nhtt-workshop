@@ -17,8 +17,8 @@ At this point in your sleuthing, you should have a hint or two regarding where y
 
 **Hint: Once you have identified the problematic service, the issue is locating in the main.go file of that service. This is the only file you will be required to edit while completing labs 2-4**
 
-## Alerting on this issue
+## (Bonus: optional) Alerting on this issue
 At this point, you have resolved the issue but you have some concern that a developer might reproduce the issue during an upcoming sprint. To account for this, create an alert that will notify you if the service that was causing the slowness in this lab becomes slow again.
 
 ## Moving forward in the workshop
-Once you have identified the issue and created an alert for future instances of it, be sure to document the process you took to locate and resolve this issue, and store the distributed trace permalink for safekeeping. When that is done, you are ready to move onto the next lab in this workshop [Lab 3: Building Spans](lab_3-Building-Spans.md)
+Once you have identified the issue, be sure to document the process you took to locate and resolve this issue, and store the distributed trace permalink for safekeeping. When that is done, you are ready to move onto the next lab in this workshop [Lab 3: Building Spans](lab_3-Building-Spans.md)
