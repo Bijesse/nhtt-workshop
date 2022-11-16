@@ -1,8 +1,10 @@
 # Additional Challenges
+
 This portion of the workshop is intended for someone who has completed labs 1-4 with time to spare before moving onto the final portion of this workshop, lab 5, which is a group activity that will be completed in small groups.
 
 ## Challenge 1 - APM vs OTel
-Each of the 11 microservices in this application are listed below. One of these microservices has not been instrumented with OpenTelemetry, it has been instrumented with the New Relic APM agent. Use the New Relic Platform to identify which microservice is instrumented with APM. Once you have done that, compare this service with at least one other service in the app to compare and contrast differences in the way charts/dashboards appear by default, how custom queries must differ in order to receive simlar data across different agents, etc.    
+
+Each of the 11 microservices in this application are listed below. One of these microservices has not been instrumented with OpenTelemetry, it has been instrumented with the New Relic APM agent. Use the New Relic Platform to identify which microservice is instrumented with APM. Once you have done that, compare this service with at least one other service in the app to compare and contrast differences in the way charts/dashboards appear by default, how custom queries must differ in order to receive simlar data across different agents, etc.
 
 | Service                                              | Language      | Description                                                                                                                       |
 | ---------------------------------------------------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------- |
@@ -18,17 +20,16 @@ Each of the 11 microservices in this application are listed below. One of these 
 | [adservice](./src/adservice)                         | Java          | Provides text ads based on given context words.                                                                                   |
 | [loadgenerator](./src/loadgenerator)                 | Python/Locust | Continuously sends requests imitating realistic user shopping flows to the frontend.                                              |
 
-
 ## Challenge 2 - Otel Collector
+
 In this challenge, you will interact with the OTel collector to get some hands-on experience levaraging a powerful tool that is a primary factor for prospects/customers when consdiering OTel as a solution for their tech stack.
 
 **What is the OTel Collector?**
 The [OTel Collector](https://opentelemetry.io/docs/collector/) is a tool that allows an application owner to configure how telemetry data should be received, processed, and exported to a backend observability provider (such as New Relic). Some application owners that leverage OTel may decide to not use the collector in small-scale environments, and instead opt to configure an exporter in their SDKs to export the data directly to their backend provider. This would create a simplified setup and lower the maintenance burden.
 
-For those who choose to use the collector, it can be particularly useful for centralizing configuration and as a data-processing intermediary between the app and the backend provider. The collector can shift some of the overhead of managing telemetry data away from the backend provider. As a result, this becomes a potential cost saver for the application owner as it can reduce data ingest and storage costs. 
+For those who choose to use the collector, it can be particularly useful for centralizing configuration and as a data-processing intermediary between the app and the backend provider. The collector can shift some of the overhead of managing telemetry data away from the backend provider. As a result, this becomes a potential cost saver for the application owner as it can reduce data ingest and storage costs.
 
-![Otel Collector Diagram](images/OtelCollector-01.png) 
+![Otel Collector Diagram](assets/OtelCollector-01.png)
 
 **How can I use the OTel Collector?**
 Please follow the steps in the [OTel Collector Challenge](otel-collector-challenge.md)
-
