@@ -170,6 +170,7 @@ func (s *server) GetQuote(ctx context.Context, in *pb.GetQuoteRequest) (*pb.GetQ
 	defer log.Info("[GetQuote] completed request")
 
 	// NHTT Workshop - Building Spans
+	// 1. Generate a quote based on the total number of items to be shipped.
 	quote := CreateQuoteFromCount(0)
 
 	// Generate a response.
