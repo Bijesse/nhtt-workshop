@@ -26,7 +26,7 @@ func (s *server) GetQuote(ctx context.Context, in *pb.GetQuoteRequest) (*pb.GetQ
     log.Info("[GetQuote] received request")
     defer log.Info("[GetQuote] completed request")
 
-    // FOK Workshop - Building Spans <- HERE
+    // NHTT Workshop - Building Spans
     quote := CreateQuoteFromCount(0, ctx)
 
     // Generate a response.
@@ -43,14 +43,14 @@ func (s *server) GetQuote(ctx context.Context, in *pb.GetQuoteRequest) (*pb.GetQ
 ```
 func CreateQuoteFromCount(count int, ctx context.Context) Quote {
 
-    // FOK Workshop - Building Spans
+    // NHTT Workshop - Building Spans
     ctx, childSpan := tracer.Start(ctx, "CreateQuoteFromCount")
     defer childSpan.End()
 
-    // FOK Workshop - Adding a Delay
+    // NHTT Workshop - Adding a Delay
     time.Sleep(time.Second * 1)
 
-    // FOK Workshop - Building Spans
+    // NHTT Workshop - Building Spans
     return CreateQuoteFromFloat(float64(rand.Intn(100)), ctx)
 }
 ```
@@ -58,11 +58,11 @@ func CreateQuoteFromCount(count int, ctx context.Context) Quote {
 ```
 func CreateQuoteFromFloat(value float64, ctx context.Context) Quote {
 
-    // FOK Workshop - Building Spans
+    // NHTT Workshop - Building Spans
     ctx, childSpan := tracer.Start(ctx, "CreateQuoteFromFloat")
     defer childSpan.End()
 
-    // FOK Workshop - Adding a Delay
+    // NHTT Workshop - Adding a Delay
     time.Sleep(time.Second * 3)
 
     units, fraction := math.Modf(value)
