@@ -34,7 +34,7 @@ import (
 	semconv "go.opentelemetry.io/otel/semconv/v1.7.0"
 	"go.opentelemetry.io/otel/trace"
 
-	// FOK Workshop - Span Attributes
+	// NHTT Workshop - Span Attributes
 	"go.opentelemetry.io/otel/attribute"
 
 	"golang.org/x/net/context"
@@ -165,28 +165,27 @@ func (s *server) Watch(req *healthpb.HealthCheckRequest, ws healthpb.Health_Watc
 
 // GetQuote produces a shipping quote (cost) in USD.
 func (s *server) GetQuote(ctx context.Context, in *pb.GetQuoteRequest) (*pb.GetQuoteResponse, error) {
-	
-	log.Info("[GetQuote] received request")
-	defer log.Info("[GetQuote] completed request")
 
-	// FOK Workshop - Building Spans
-	quote := CreateQuoteFromCount(0, ctx)
+    log.Info("[GetQuote] received request")
+    defer log.Info("[GetQuote] completed request")
 
-	// Generate a response.
-	return &pb.GetQuoteResponse{
-		CostUsd: &pb.Money{
-			CurrencyCode: "USD",
-			Units:        int64(quote.Dollars),
-			Nanos:        int32(quote.Cents * 10000000)},
-	}, nil
+    // NHTT Workshop - Building Spans
+    quote := CreateQuoteFromCount(0, ctx)
 
+    // Generate a response.
+    return &pb.GetQuoteResponse{
+        CostUsd: &pb.Money{
+            CurrencyCode: "USD",
+            Units:        int64(quote.Dollars),
+            Nanos:        int32(quote.Cents * 10000000)},
+    }, nil
 }
 
 // ShipOrder mocks that the requested items will be shipped.
 // It supplies a tracking ID for notional lookup of shipment delivery status.
 func (s *server) ShipOrder(ctx context.Context, in *pb.ShipOrderRequest) (*pb.ShipOrderResponse, error) {
 	
-	// FOK Workshop - Span Attributes
+	// NHTT Workshop - Span Attributes
 	ctx, parentSpan := tracer.Start(ctx, "shipOrder")
 	defer parentSpan.End()
 
@@ -196,13 +195,13 @@ func (s *server) ShipOrder(ctx context.Context, in *pb.ShipOrderRequest) (*pb.Sh
 	// 1. Create a Tracking ID
 	baseAddress := fmt.Sprintf("%s, %s, %s, %d", in.Address.StreetAddress, in.Address.City, in.Address.State, in.Address.ZipCode)
 	
-	// FOK Workshop - Span Attributes
+	// NHTT Workshop - Span Attributes
 	parentSpan.SetAttributes(
 		attribute.String("address", baseAddress), 
 		attribute.String("city", in.Address.City), 
 		attribute.String("state", in.Address.State))
 	
-	// FOK Workshop - Adding Errors
+	// NHTT Workshop - Adding Errors
 	if in.Address.ZipCode < 10000 || in.Address.ZipCode > 99999 {
 		parentSpan.SetStatus(1, "zipcode is invalid")
 	}
@@ -221,34 +220,34 @@ func (q Quote) String() string {
 }
 
 // CreateQuoteFromCount takes a number of items and returns a Price struct.
-// FOK Workshop - Building spans
+// NHTT Workshop - Building spans
 func CreateQuoteFromCount(count int, ctx context.Context) Quote {
 
-	// FOK Workshop - Building Spans
-	ctx, childSpan := tracer.Start(ctx, "CreateQuoteFromCount")
-	defer childSpan.End()
+    // NHTT Workshop - Building Spans
+    ctx, childSpan := tracer.Start(ctx, "CreateQuoteFromCount")
+    defer childSpan.End()
 
-	// FOK Workshop - Adding a Delay
-	time.Sleep(time.Second / 10)
+    // NHTT Workshop - Adding a Delay
+    time.Sleep(time.Second * 1)
 
-	// FOK Workshop - Building Spans
-	return CreateQuoteFromFloat(float64(rand.Intn(100)), ctx)
+    // NHTT Workshop - Building Spans
+    return CreateQuoteFromFloat(float64(rand.Intn(100)), ctx)
 }
 
 // CreateQuoteFromFloat takes a price represented as a float and creates a Price struct.
-// FOK Workshop - Building Spans
+// NHTT Workshop - Building Spans
 func CreateQuoteFromFloat(value float64, ctx context.Context) Quote {
-	
-	// FOK Workshop - Building Spans
-	ctx, childSpan := tracer.Start(ctx, "CreateQuoteFromFloat")
-	defer childSpan.End()
 
-	// FOK Workshop - Adding a Delay
-	time.Sleep(time.Second / 3)
+    // NHTT Workshop - Building Spans
+    ctx, childSpan := tracer.Start(ctx, "CreateQuoteFromFloat")
+    defer childSpan.End()
 
-	units, fraction := math.Modf(value)
-	return Quote{
-		uint32(units),
-		uint32(math.Trunc(fraction * 100)),
-	}
+    // NHTT Workshop - Adding a Delay
+    time.Sleep(time.Second * 3)
+
+    units, fraction := math.Modf(value)
+    return Quote{
+        uint32(units),
+        uint32(math.Trunc(fraction * 100)),
+    }
 }
