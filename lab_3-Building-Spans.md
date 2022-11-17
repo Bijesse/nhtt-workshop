@@ -22,27 +22,54 @@ Your developer sent you a few code snippets at 9pm last night since they have a 
 
 ```
 func (s *server) GetQuote(ctx context.Context, in *pb.GetQuoteRequest) (*pb.GetQuoteResponse, error) {
-	...	
-		// 1. Generate a quote based on the total number of items to be shipped.
-	quote := CreateQuoteFromCount(0, ctx)
-	...
+
+    log.Info("[GetQuote] received request")
+    defer log.Info("[GetQuote] completed request")
+
+    // FOK Workshop - Building Spans <- HERE
+    quote := CreateQuoteFromCount(0, ctx)
+
+    // Generate a response.
+    return &pb.GetQuoteResponse{
+        CostUsd: &pb.Money{
+            CurrencyCode: "USD",
+            Units:        int64(quote.Dollars),
+            Nanos:        int32(quote.Cents * 10000000)},
+    }, nil
 }
 ```
 
 
 ```
-func CreateQuoteFromCount(value float64 , ctx context.Context) Quote {
-	ctx, childSpan := tracer.Start(ctx, "CreateQuoteFromCount")
-	...
-	return CreateQuoteFromFloat(float64(rand.Intn(100)), ctx)
+func CreateQuoteFromCount(count int, ctx context.Context) Quote {
+
+    // FOK Workshop - Building Spans
+    ctx, childSpan := tracer.Start(ctx, "CreateQuoteFromCount")
+    defer childSpan.End()
+
+    // FOK Workshop - Adding a Delay
+    time.Sleep(time.Second * 1)
+
+    // FOK Workshop - Building Spans
+    return CreateQuoteFromFloat(float64(rand.Intn(100)), ctx)
 }
 ```
 
 ```
-func CreateQuoteFromFloat(value float64 , ctx context.Context) Quote {
-	ctx, childSpan := tracer.Start(ctx, "CreateQuoteFromFloat")
-	defer childSpan.End()
-	...
+func CreateQuoteFromFloat(value float64, ctx context.Context) Quote {
+
+    // FOK Workshop - Building Spans
+    ctx, childSpan := tracer.Start(ctx, "CreateQuoteFromFloat")
+    defer childSpan.End()
+
+    // FOK Workshop - Adding a Delay
+    time.Sleep(time.Second * 3)
+
+    units, fraction := math.Modf(value)
+    return Quote{
+        uint32(units),
+        uint32(math.Trunc(fraction * 100)),
+    }
 }
 ```
 
