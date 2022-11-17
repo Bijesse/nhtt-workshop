@@ -165,20 +165,20 @@ func (s *server) Watch(req *healthpb.HealthCheckRequest, ws healthpb.Health_Watc
 
 // GetQuote produces a shipping quote (cost) in USD.
 func (s *server) GetQuote(ctx context.Context, in *pb.GetQuoteRequest) (*pb.GetQuoteResponse, error) {
+	
+	log.Info("[GetQuote] received request")
+	defer log.Info("[GetQuote] completed request")
 
-    log.Info("[GetQuote] received request")
-    defer log.Info("[GetQuote] completed request")
+	// NHTT Workshop - Building Spans
+	quote := CreateQuoteFromCount(0, ctx)
 
-    // NHTT Workshop - Building Spans
-    quote := CreateQuoteFromCount(0, ctx)
-
-    // Generate a response.
-    return &pb.GetQuoteResponse{
-        CostUsd: &pb.Money{
-            CurrencyCode: "USD",
-            Units:        int64(quote.Dollars),
-            Nanos:        int32(quote.Cents * 10000000)},
-    }, nil
+	// Generate a response.
+	return &pb.GetQuoteResponse{
+		CostUsd: &pb.Money{
+			CurrencyCode: "USD",
+			Units:        int64(quote.Dollars),
+			Nanos:        int32(quote.Cents * 10000000)},
+	}, nil
 }
 
 // ShipOrder mocks that the requested items will be shipped.
@@ -223,31 +223,31 @@ func (q Quote) String() string {
 // NHTT Workshop - Building spans
 func CreateQuoteFromCount(count int, ctx context.Context) Quote {
 
-    // NHTT Workshop - Building Spans
-    ctx, childSpan := tracer.Start(ctx, "CreateQuoteFromCount")
-    defer childSpan.End()
+	// NHTT Workshop - Building Spans
+	ctx, childSpan := tracer.Start(ctx, "CreateQuoteFromCount")
+	defer childSpan.End()
 
-    // NHTT Workshop - Adding a Delay
-    time.Sleep(time.Second * 1)
+	// NHTT Workshop - Adding a Delay
+	time.Sleep(time.Second * 1)
 
-    // NHTT Workshop - Building Spans
-    return CreateQuoteFromFloat(float64(rand.Intn(100)), ctx)
+	// NHTT Workshop - Building Spans
+	return CreateQuoteFromFloat(float64(rand.Intn(100)), ctx)
 }
 
 // CreateQuoteFromFloat takes a price represented as a float and creates a Price struct.
 // NHTT Workshop - Building Spans
 func CreateQuoteFromFloat(value float64, ctx context.Context) Quote {
+	
+	// NHTT Workshop - Building Spans
+	ctx, childSpan := tracer.Start(ctx, "CreateQuoteFromFloat")
+	defer childSpan.End()
 
-    // NHTT Workshop - Building Spans
-    ctx, childSpan := tracer.Start(ctx, "CreateQuoteFromFloat")
-    defer childSpan.End()
+	// NHTT Workshop - Adding a Delay
+	time.Sleep(time.Second * 3)
 
-    // NHTT Workshop - Adding a Delay
-    time.Sleep(time.Second * 3)
-
-    units, fraction := math.Modf(value)
-    return Quote{
-        uint32(units),
-        uint32(math.Trunc(fraction * 100)),
-    }
+	units, fraction := math.Modf(value)
+	return Quote{
+		uint32(units),
+		uint32(math.Trunc(fraction * 100)),
+	}
 }
