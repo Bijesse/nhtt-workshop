@@ -14,9 +14,9 @@ _Confirm your environment is functioning the same way as the screenshot below by
 
 ![Cursor_and_shippingservice___shippingservice___New_Relic_One.png](assets/Cursor_and_shippingservice___shippingservice___New_Relic_One.png)
 
-Next, you look up and down at the many functions in the request you looked at earlier in the lab. You are not able to see an attribute for State, City, or anything simlar to help find the location of shipping orders. What do you do? Order another $7 cappuccino? No! You decide roll up your gingham sleeves a little more to try and figure this out.
+Next, you look up and down at the many functions in the distributed trace you looked at earlier in the workshop. You are not able to see an attribute for State, City, or anything simlar to help find the location of shipping orders. What do you do? Order another $7 cappuccino? No! You decide roll up your gingham sleeves a little more to try and figure this out.
 
-_Confirm your application is functioning the same way as the lab intends by reviewing a distributed trace and looking at the attributes._
+_Confirm your application is functioning the same way as the lab intends by reviewing a distributed trace and looking at the attributes. You will not see any fields related to user's location_
 
 ## Fixing this issue
 
