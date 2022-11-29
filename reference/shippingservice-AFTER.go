@@ -186,8 +186,9 @@ func (s *server) GetQuote(ctx context.Context, in *pb.GetQuoteRequest) (*pb.GetQ
 func (s *server) ShipOrder(ctx context.Context, in *pb.ShipOrderRequest) (*pb.ShipOrderResponse, error) {
 	
 	// NHTT Workshop - Span Attributes
-	ctx, parentSpan := tracer.Start(ctx, "shipOrder")
-	defer parentSpan.End()
+	ctx, parentSpan := tracer.Start(ctx, "shipOrder",
+    	trace.WithSpanKind(trace.SpanKindServer))
+    	defer parentSpan.End()
 
 	log.Info("[ShipOrder] received request")
 	defer log.Info("[ShipOrder] completed request")
