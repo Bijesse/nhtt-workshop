@@ -10,7 +10,7 @@ Starting around 10-10:30AM today, the Hipster Shop social media PR team has been
 Now that you are aware of the issue users are experiencing on the front end, it is time to dig into the data in New Relic to identify the root cause. Hipster Shop is built across a variety of microservices which should help organize and contain your search. To begin your observability sleuthing, identify the microservice that seems significantly slower than the others. **Hint: Response Time!**
 
 ## Following a trace
-Once you have identified the slowest microservice, make use of [distributed tracing](https://newrelic.com/blog/how-to-relic/distributed-tracing-general-availability) in New Relic to find the specific function causing the slow page load times.
+Once you have identified the slowest microservice, make use of [distributed tracing](https://newrelic.com/blog/how-to-relic/distributed-tracing-general-availability) in New Relic to find the specific function causing the slow page load times **and errors**.
 
 ## Dive into the code
 At this point in your sleuthing, you should have a hint or two regarding where you might find the issue. Try and locate the issue in the code of this application and remove it using comments.
