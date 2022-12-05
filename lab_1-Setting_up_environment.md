@@ -29,6 +29,8 @@ If the deployment was successful, you should see a node called `minikube` in a t
 2. Locate your **ingest license** key from your account's [API keys list](https://one.newrelic.com/api-keys).
 3. Run the following commands in your terminal to export the environment variables. These environmental variables configure the generated OpenTelemetry data to be sent to your account. Be sure to replace all instances of `<NEWRELIC_INGEST_LICENSE_KEY>` with your key. **Hold onto these commands in a notes file for later reference in this lab**
 
+
+**Important:** If your account is based in the **US** region, copy these commands:
 ```bash
 export OTEL_EXPORTER_OTLP_ENDPOINT=https://otlp.nr-data.net:4317
 export OTEL_EXPORTER_OTLP_METRICS_ENDPOINT=https://otlp.nr-data.net:4317
@@ -37,6 +39,17 @@ export OTEL_EXPORTER_OTLP_HEADERS=api-key=<NEWRELIC_INGEST_LICENSE_KEY>
 export NEW_RELIC_API_KEY=<NEWRELIC_INGEST_LICENSE_KEY>
 export NEW_RELIC_LICENSE_KEY=<NEWRELIC_INGEST_LICENSE_KEY>
 export NEW_RELIC_HOST=collector.newrelic.com
+```
+
+**Important:** If your account is based in the **EU** region, copy these commands instead:
+```bash
+export OTEL_EXPORTER_OTLP_ENDPOINT=https://otlp.eu01.nr-data.net:4317
+export OTEL_EXPORTER_OTLP_METRICS_ENDPOINT=https://otlp.eu01.nr-data.net:4317
+export OTEL_EXPORTER_OTLP_TRACES_ENDPOINT=https://otlp.eu01.nr-data.net:4317
+export OTEL_EXPORTER_OTLP_HEADERS=api-key=<NEWRELIC_INGEST_LICENSE_KEY>
+export NEW_RELIC_API_KEY=<NEWRELIC_INGEST_LICENSE_KEY>
+export NEW_RELIC_LICENSE_KEY=<NEWRELIC_INGEST_LICENSE_KEY>
+export NEW_RELIC_HOST=collector.eu.newrelic.com
 ```
 
 ## Run Skaffold
