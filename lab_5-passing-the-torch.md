@@ -15,7 +15,7 @@ With your remaining two weeks dedicated to passing the proverbial observability 
 1. Identify the resources provided by New Relic that others need to be aware of in order to be successful moving forward. *Things to consider: Relevant New Relic docs, New Relic staff responsibilities and roles, enablement courses provided by New Relic, automation to limit manual configuration, etc.* Be prepared to present on at least 3 New Relic resources. 
 2. Create a presentation for a meeting that has been scheduled for you to lead on your final day. *This presentation will include executives and engineers. They are expecting to see a slideshow that includes everything they need to know moving forward as it relates how and why they should leverage New Relic after you leave.*
 
-**One member of your group will create a Google Slidedeck that will be shared with other members so everyone can edit the same presentation. Use [this template](https://brandfolder.com/s/8gmc57wgnh6tq46gvrjggk57) to get started.**
+**One member of your group will create a Google Slidedeck that will be shared with other members so everyone can edit the same presentation. Use [this template](https://docs.google.com/presentation/d/144l0xoRWgLmFuQCgvv-CdURrDlO8-KsldJE_Rm2V98E/edit?usp=sharing) to get started.**
  
 ## Completing this workshop
 After you have created your presentation, be sure to set the share settings to "Anyone from New Relic can view". You will be expected to share your plan of action with others later in this training.  
