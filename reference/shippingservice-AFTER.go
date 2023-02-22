@@ -229,7 +229,7 @@ func CreateQuoteFromCount(count int, ctx context.Context) Quote {
 	defer childSpan.End()
 
 	// NHTT Workshop - Adding a Delay
-	time.Sleep(time.Second * 1)
+	// time.Sleep(time.Second * 1)
 
 	// NHTT Workshop - Building Spans
 	return CreateQuoteFromFloat(float64(rand.Intn(100)), ctx)
@@ -244,7 +244,7 @@ func CreateQuoteFromFloat(value float64, ctx context.Context) Quote {
 	defer childSpan.End()
 
 	// NHTT Workshop - Adding a Delay
-	time.Sleep(time.Second * 3)
+	// time.Sleep(time.Second * 3)
 
 	units, fraction := math.Modf(value)
 	return Quote{
